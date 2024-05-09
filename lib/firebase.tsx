@@ -11,9 +11,9 @@ const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "chitchat-2dac0.firebaseapp.com",
   projectId: "chitchat-2dac0",
-  storageBucket: "chitchat-2dac0.appspot.com",
-  messagingSenderId: "153790347174",
-  appId: "1:153790347174:web:993064b214548a048f4167",
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_storageBucket,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_messagingSenderIdd,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_appId,
 };
 
 // Initialize Firebase
