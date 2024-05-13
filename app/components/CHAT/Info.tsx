@@ -1,19 +1,25 @@
 import React from "react";
 import Avatar from "../Avatar";
 import Image from "next/image";
+import { useChatStore } from "@/lib/chatStore";
+import { useUserStore } from "@/lib/userStore";
 
 function Info() {
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked }: any =
+    useChatStore();
+
+  const { currentUser }: any = useUserStore();
   return (
     <div className="w-[250px] h-full flex-shrink-0 rounded-r-xl border-l border-gray-200 overflow-x-hidden">
       <div className="flex justify-center  flex-col items-center mt-24">
         <div className="h-32 w-32 relative">
-          <Avatar />
+          <Avatar img={user.image} />
         </div>
-        <span className=" font-bold text-xl mt-2">John Doe</span>
+        <span className=" font-bold text-xl mt-2">{user.name}</span>
         <div className="flex flex-col gap-3  mt-6 p-2 items-start font-bold text-sm text-secondaryText">
           <div className="flex items-center gap-4">
             <Image src="/Icon_email.svg" alt="" height={28} width={28} />
-            <span className="">jo*****@gmail.com</span>
+            <span className="">{user.email}</span>
           </div>
           <div className="flex items-center gap-4">
             <Image src="/Icon_date.svg" alt="" height={28} width={28} />

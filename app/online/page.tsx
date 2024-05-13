@@ -10,8 +10,8 @@ import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
 
 export default function Home() {
-  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
-  const { chatId } = useChatStore();
+  const { currentUser, isLoading, fetchUserInfo }: any = useUserStore();
+  const { chatId }: any = useChatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -31,7 +31,7 @@ export default function Home() {
           <>
             <Menu />
             {chatId && <Chat />}
-            <Info />
+            {chatId && <Info />}
           </>
         )}
       </main>

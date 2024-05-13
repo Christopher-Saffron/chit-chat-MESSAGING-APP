@@ -48,7 +48,7 @@ function MenuChatList() {
       (item) => item.chatId === chat.chatId
     );
 
-    // userChats[chatIndex].isSeen = true;
+    userChats[chatIndex].isSeen = true;
 
     const userChatsRef = doc(db, "userchats", currentUser.id);
 
