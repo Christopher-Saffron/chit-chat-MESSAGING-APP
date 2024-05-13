@@ -146,8 +146,10 @@ function Banner_form_register({ onClick }: BannerLeftProps) {
               <span>REGISTER WITH GITHUB</span>
             </button>
             <button
-              onClick={() => {
-                auth.signOut();
+              onClick={(e) => {
+                e.preventDefault();
+                // auth.signOut();
+                signOut(auth);
               }}
               className="auth-button"
             >

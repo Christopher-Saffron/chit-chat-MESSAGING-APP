@@ -7,14 +7,28 @@ import { arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
+import upload from "@/lib/upload";
 
 function ChatInput() {
   const [EmojiPickerOpen, setEmojiPickerOpen] = useState<Boolean>(false);
   const [text, setText] = useState<string>("");
+  const [img, setImg] = useState({
+    file: null,
+    url: "",
+  });
 
   const { chatId, user }: any = useChatStore();
-
   const { currentUser }: any = useUserStore();
+
+  const handleImg = (e: any) => {
+    e.preventDefault();
+    if (e.target.files[0]) {
+      setImg({
+        file: e.target.files[0],
+        url: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
 
   function handleEmoji(e: EmojiClickData) {
     setText((prev) => prev + e.emoji);
@@ -22,8 +36,13 @@ function ChatInput() {
 
   async function handleSend() {
     if (text === "") return;
+    let imgUrl = null;
 
     try {
+      if (img.file) {
+        imgUrl = await upload(img.file);
+      }
+
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           senderId: currentUser.id,
@@ -45,16 +64,20 @@ function ChatInput() {
             (c: any) => c.chatId === chatId
           );
 
-          userChatsData[chatIndex].lastMessage = text;
-          userChatsData[chatIndex].isSeen =
+          console.log(userChatsData, "and now index", chatIndex);
+
+          userChatsData.chats[chatIndex].lastMessage = text;
+          userChatsData.chats[chatIndex].isSeen =
             id === currentUser.id ? true : false;
-          userChatsData[chatIndex].updatedAt = Date.now();
+          userChatsData.chats[chatIndex].updatedAt = Date.now();
 
           await updateDoc(userChatsRef, {
             chats: userChatsData.chats,
           });
         }
       });
+
+      setText("");
     } catch (err) {
       console.log(err);
     }
@@ -77,6 +100,12 @@ function ChatInput() {
         </button>
         <button className="relative h-6 w-6 input-emoji">
           <Image src="/Icon_attach.svg" alt="" fill />
+          <input
+            type="file"
+            id="file"
+            className=" hidden"
+            onChange={handleImg}
+          />
         </button>
         <button className="relative h-10 w-10 input-emoji" onClick={handleSend}>
           <Image src="/Icon_send.svg" alt="" fill />

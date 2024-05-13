@@ -69,7 +69,9 @@ function MenuChatList() {
           onClick={() => {
             handleSelect(chat);
           }}
-          className="flex justify-between items-center  py-2 px-6 gap-4 cursor-pointer hover:bg-[#75B444]"
+          className={`flex justify-between items-center  py-2 px-6 gap-4 cursor-pointer ${
+            chat.isSeen ? "" : "bg-[#90c26a]"
+          } hover:bg-[#75B444]`}
           key={chat.chatId}
         >
           <ChatOption chat={chat} />

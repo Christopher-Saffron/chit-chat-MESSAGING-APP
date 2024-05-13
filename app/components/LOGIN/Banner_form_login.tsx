@@ -26,7 +26,9 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
         auth,
         email as string,
         password as string
-      );
+      ).then(() => {
+        console.log("LOGGED IN");
+      });
     } catch (err: any) {
       console.log(err);
       toast.error(err.message);

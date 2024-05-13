@@ -8,7 +8,7 @@ function Avatar({ img }: { img?: string }) {
         src={img || "/ChatOption.png"}
         alt=""
         fill
-        className="rounded-full"
+        className="rounded-full object-cover"
       />
       <div className="h-1/4 w-1/4 rounded-full bg-[#9FF577] absolute bottom-0.5 right-0.5" />
     </>

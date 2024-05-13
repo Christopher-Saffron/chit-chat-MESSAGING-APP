@@ -10,9 +10,20 @@ interface MessageProps {
   id?: string;
 }
 
-function ChatMessage({ text, createdAt, img }: { [key: string]: any }) {
+function ChatMessage({
+  text,
+  createdAt,
+  img,
+  fromCurrentUser,
+}: {
+  [key: string]: any;
+}) {
   return (
-    <div className={`message flex-row-reverse`}>
+    <div
+      className={`message ${
+        fromCurrentUser ? "flex-row-reverse" : "flex-row"
+      } `}
+    >
       <div className="text-center w-fit text-secondaryText font-semibold text-sm">
         <div className=" w-12 h-12 relative">
           <Image
@@ -29,8 +40,15 @@ function ChatMessage({ text, createdAt, img }: { [key: string]: any }) {
           messageSide === "message-right" ? " text-alternativeText" : ""
         } mb-12  max-w-80 relative w-fit rounded-lg`}
       >aa</div> */}
-      <div
+      {/* <div
         className={`font-medium p-3 mb-12   relative rounded-lg message-right `}
+      >
+        <span>{text}</span>
+      </div> */}
+      <div
+        className={`${
+          fromCurrentUser ? "message-right" : "message-left"
+        } font-medium p-3 mb-12   relative rounded-lg `}
       >
         <span>{text}</span>
       </div>
@@ -51,11 +69,7 @@ function ChatMessage({ text, createdAt, img }: { [key: string]: any }) {
 //         />
 //         <span>{format(sentAt, "kk:mm")}</span>
 //       </div>
-//       {/* <div
-//         className={`${messageSide} font-medium p-3 ${
-//           messageSide === "message-right" ? " text-alternativeText" : ""
-//         } mb-12  max-w-80 relative w-fit rounded-lg`}
-//       >aa</div> */}
+
 //       <div
 //         className={`${
 //           user === "user" ? "message-right" : "message-left"

@@ -68,8 +68,6 @@ function Chat() {
     };
   }, [chatId]);
 
-  console.log(user, currentUser);
-
   return (
     <div className="h-full  w-full flex flex-col   justify-normal ">
       <div className=" h-20 flex flex-col px-9 py-3  justify-center shadow-xl ">
@@ -83,12 +81,11 @@ function Chat() {
       <div className="p-4 flex-col mx-1 flex-grow flex justify-end  gap-4 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-corner-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-secondaryText">
         <div className="h-full">
           {chat?.messages.map((item: any) => {
-            console.log(item);
-            // const img = item.senderId === currentUser.id ? currentUser.image : user.image
             return (
               <ChatMessage
                 key={item.createdAt}
                 {...item}
+                fromCurrentUser={item.senderId === currentUser.id}
                 img={
                   item.senderId === currentUser.id
                     ? currentUser.image
