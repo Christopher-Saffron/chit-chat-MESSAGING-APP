@@ -5,51 +5,69 @@ import ChatInput from "./ChatInput";
 import useUserStore from "@/lib/userStore";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useChatStore } from "@/lib/chatStore";
 
-const FAKE_MESSAGES = [
-  {
-    text: "Hello there!",
-    user: "otherUser",
-    sentAt: new Date("2024-05-01T13:41:02.283Z"),
-    image: "",
-    id: "0",
-  },
-  {
-    text: "Hi!",
-    user: "user",
-    sentAt: new Date("2024-05-01T13:42:02.283Z"),
-    image: "YES",
-    id: "1",
-  },
-  {
-    text: "How are You?",
-    user: "otherUser",
-    sentAt: new Date("2024-05-01T13:47:02.283Z"),
-    image: "",
-    id: "2",
-  },
-  {
-    text: "Test message.",
-    user: "otherUser",
-    sentAt: new Date("2024-05-01T13:47:02.283Z"),
-    image: "",
-    id: "3",
-  },
-  {
-    text: "Test message.",
-    user: "otherUser",
-    sentAt: new Date("2024-05-01T13:47:02.283Z"),
-    image: "",
-    id: "4",
-  },
-];
+// const FAKE_MESSAGES = [
+//   {
+//     text: "Hello there!",
+//     user: "otherUser",
+//     sentAt: new Date("2024-05-01T13:41:02.283Z"),
+//     image: "",
+//     id: "0",
+//   },
+//   {
+//     text: "Hi!",
+//     user: "user",
+//     sentAt: new Date("2024-05-01T13:42:02.283Z"),
+//     image: "YES",
+//     id: "1",
+//   },
+//   {
+//     text: "How are You?",
+//     user: "otherUser",
+//     sentAt: new Date("2024-05-01T13:47:02.283Z"),
+//     image: "",
+//     id: "2",
+//   },
+//   {
+//     text: "Test message.",
+//     user: "otherUser",
+//     sentAt: new Date("2024-05-01T13:47:02.283Z"),
+//     image: "",
+//     id: "3",
+//   },
+//   {
+//     text: "Test message.",
+//     user: "otherUser",
+//     sentAt: new Date("2024-05-01T13:47:02.283Z"),
+//     image: "",
+//     id: "4",
+//   },
+// ];
 
 function Chat() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [chat, setChat] = useState();
+
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked }: any =
+    useChatStore();
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const unSub = onSnapshot(
+      doc(db, "chats", "3fESIzk6gbDL9wrjJwkZ"),
+      (res) => {
+        setChat(res.data());
+      }
+    );
+
+    return () => {
+      unSub();
+    };
+  }, [chatId]);
 
   return (
     <div className="h-full  w-full flex flex-col   justify-normal ">
@@ -63,9 +81,9 @@ function Chat() {
 
       <div className="p-4 flex-col mx-1 flex-grow flex justify-end  gap-4 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-corner-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-secondaryText">
         <div className="h-full">
-          {FAKE_MESSAGES.map((item) => (
+          {/* {FAKE_MESSAGES.map((item) => (
             <ChatMessage key={item.id} {...item} />
-          ))}
+          ))} */}
           <div ref={scrollRef} />
         </div>
       </div>

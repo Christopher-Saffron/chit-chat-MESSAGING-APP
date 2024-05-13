@@ -6,10 +6,12 @@ import Info from "../components/CHAT/Info";
 import Menu from "../components/CHAT/Menu";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import useUserStore from "@/lib/userStore";
+import { useChatStore } from "@/lib/chatStore";
+import { useUserStore } from "@/lib/userStore";
 
 export default function Home() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+  const { chatId } = useChatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -20,15 +22,18 @@ export default function Home() {
       unSub();
     };
   }, [fetchUserInfo]);
-  console.log("BONK", currentUser);
 
   if (isLoading) return <div>LOADINGGGG</div>;
   return (
     <>
       <main className="  max-w-screen-lg m-auto  h-[800px] w-[1100px] flex bg-white rounded-xl shadow-xl ">
-        <Menu />
-        <Chat />
-        <Info />
+        {currentUser && (
+          <>
+            <Menu />
+            {chatId && <Chat />}
+            <Info />
+          </>
+        )}
       </main>
     </>
   );

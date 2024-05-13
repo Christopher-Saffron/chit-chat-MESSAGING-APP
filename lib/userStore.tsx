@@ -1,12 +1,11 @@
 import { doc, getDoc } from "firebase/firestore";
-import { toast } from "react-toastify";
 import { create } from "zustand";
 import { db } from "./firebase";
 
-const useUserStore = create((set) => ({
+export const useUserStore = create((set) => ({
   currentUser: null,
   isLoading: true,
-  fetchUserInfo: async (uid: string) => {
+  fetchUserInfo: async (uid) => {
     if (!uid) return set({ currentUser: null, isLoading: false });
 
     try {
@@ -18,11 +17,9 @@ const useUserStore = create((set) => ({
       } else {
         set({ currentUser: null, isLoading: false });
       }
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
       return set({ currentUser: null, isLoading: false });
     }
   },
 }));
-
-export default useUserStore;
