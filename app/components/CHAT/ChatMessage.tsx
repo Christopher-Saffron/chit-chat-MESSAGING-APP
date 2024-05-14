@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+import { format, formatDistance, formatDistanceToNow } from "date-fns";
 import Image from "next/image";
 import React from "react";
 
@@ -19,7 +19,7 @@ function ChatMessage({
 }: {
   [key: string]: any;
 }) {
-  console.log(img);
+  console.log(new Date(createdAt.seconds).toString());
   return (
     <div
       className={`message ${
@@ -35,7 +35,9 @@ function ChatMessage({
             className=" rounded-full object-cover shadow"
           />
         </div>
-        <span>00:00</span>
+        <span className=" text-[11px] block">
+          {format(new Date(createdAt.seconds * 1000), "HH:mm")}
+        </span>
       </div>
       {/* <div
         className={`${messageSide} font-medium p-3 ${
