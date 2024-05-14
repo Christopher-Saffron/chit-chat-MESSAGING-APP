@@ -19,9 +19,11 @@ function ChatOption({ chat }: any) {
         <h3 className="  font-bold">{chat.user.name}</h3>
         <p>{lastMessage}</p>
       </div>
-      <div className="bg-[#EF8181] rounded-full text-alternativeText font-bold px-1.5 py-1 text-sm truncate">
-        NEW
-      </div>
+      {!chat.isSeen && (
+        <div className="bg-[#EF8181] rounded-full text-alternativeText font-bold px-1.5 py-1 text-sm truncate">
+          NEW
+        </div>
+      )}
     </>
   );
 }

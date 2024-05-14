@@ -17,7 +17,8 @@ function ChatInput() {
     url: "",
   });
 
-  const { chatId, user }: any = useChatStore();
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked }: any =
+    useChatStore();
   const { currentUser }: any = useUserStore();
 
   const handleImg = (e) => {
@@ -90,8 +91,13 @@ function ChatInput() {
   return (
     <div className="w-full h-16 px-3  flex justify-center items-center  bg-[#EBEBEB]">
       <input
-        className="   w-full bg-inherit text-xl placeholder:color-secondaryText h-10 py-4 rounded-lg  placeholder:font-bold  relative focus:outline-none"
-        placeholder="Type here"
+        className="w-full bg-inherit text-xl placeholder:color-secondaryText h-10 py-4 rounded-lg  placeholder:font-bold  relative focus:outline-none"
+        placeholder={
+          isCurrentUserBlocked || isReceiverBlocked
+            ? "Blocked from typing"
+            : "Type here..."
+        }
+        disabled={isCurrentUserBlocked || isReceiverBlocked}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
