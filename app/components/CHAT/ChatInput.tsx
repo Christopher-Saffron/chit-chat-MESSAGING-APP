@@ -20,8 +20,7 @@ function ChatInput() {
   const { chatId, user }: any = useChatStore();
   const { currentUser }: any = useUserStore();
 
-  const handleImg = (e: any) => {
-    e.preventDefault();
+  const handleImg = (e) => {
     if (e.target.files[0]) {
       setImg({
         file: e.target.files[0],
@@ -48,6 +47,7 @@ function ChatInput() {
           senderId: currentUser.id,
           text,
           createdAt: new Date(),
+          ...(imgUrl && { img: imgUrl }),
         }),
       });
 
@@ -76,10 +76,14 @@ function ChatInput() {
           });
         }
       });
-
-      setText("");
     } catch (err) {
       console.log(err);
+    } finally {
+      setImg({
+        file: null,
+        url: "",
+      });
+      setText("");
     }
   }
 
@@ -99,7 +103,9 @@ function ChatInput() {
           <Image src="/Icon_emoji.svg" alt="" fill />
         </button>
         <button className="relative h-6 w-6 input-emoji">
-          <Image src="/Icon_attach.svg" alt="" fill />
+          <label htmlFor="file">
+            <Image src="/Icon_attach.svg" alt="" fill />
+          </label>
           <input
             type="file"
             id="file"
@@ -107,6 +113,30 @@ function ChatInput() {
             onChange={handleImg}
           />
         </button>
+        {img.url && (
+          <motion.div
+            initial={{ opacity: 0, y: "20%" }}
+            animate={{ opacity: 1, y: "-10%" }}
+            className="h-32 w-[200%] rounded-md bg-white shadow-md border-gray-200 border  absolute bottom-[130%] right-0 overflow-hidden"
+          >
+            <p className=" text-xs font-semibold select-none p-1">Attach:</p>
+            <button
+              onClick={() =>
+                setImg({
+                  file: null,
+                  url: "",
+                })
+              }
+              className="absolute top-0 right-0 text-xs p-1 cursor-pointer"
+            >
+              X
+            </button>
+            <div className="w-full h-full relative">
+              <Image src={img.url} alt="" className=" object-cover" fill />
+            </div>
+          </motion.div>
+        )}
+
         <button className="relative h-10 w-10 input-emoji" onClick={handleSend}>
           <Image src="/Icon_send.svg" alt="" fill />
         </button>

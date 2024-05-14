@@ -86,7 +86,7 @@ function Chat() {
                 key={item.createdAt}
                 {...item}
                 fromCurrentUser={item.senderId === currentUser.id}
-                img={
+                avatarImg={
                   item.senderId === currentUser.id
                     ? currentUser.image
                     : user.image

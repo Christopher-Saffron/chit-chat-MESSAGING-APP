@@ -13,11 +13,13 @@ interface MessageProps {
 function ChatMessage({
   text,
   createdAt,
+  avatarImg,
   img,
   fromCurrentUser,
 }: {
   [key: string]: any;
 }) {
+  console.log(img);
   return (
     <div
       className={`message ${
@@ -27,7 +29,7 @@ function ChatMessage({
       <div className="text-center w-fit text-secondaryText font-semibold text-sm">
         <div className=" w-12 h-12 relative">
           <Image
-            src={img || "/ChatOption.png"}
+            src={avatarImg || "/ChatOption.png"}
             alt=""
             fill
             className=" rounded-full object-cover shadow"
@@ -48,49 +50,17 @@ function ChatMessage({
       <div
         className={`${
           fromCurrentUser ? "message-right" : "message-left"
-        } font-medium p-3 mb-12   relative rounded-lg `}
+        } font-medium p-3 mb-12   relative rounded-lg ${img ? "w-full" : ""} `}
       >
         <span>{text}</span>
+        {img && (
+          <div className="relative w-full h-52 mt-2">
+            <Image src={img} alt="" fill className=" object-cover shadow-xl" />
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-// function ChatMessage({ text, user, sentAt, image }: MessageProps) {
-//   return (
-//     <div className={`message  ${user === "user" ? "flex-row-reverse" : ""}`}>
-//       <div className="text-center w-fit text-secondaryText font-semibold text-sm">
-//         <Image
-//           src="/ChatOption.png"
-//           alt=""
-//           width={50}
-//           height={50}
-//           className=" rounded-full"
-//         />
-//         <span>{format(sentAt, "kk:mm")}</span>
-//       </div>
-
-//       <div
-//         className={`${
-//           user === "user" ? "message-right" : "message-left"
-//         } font-medium p-3 mb-12   relative ${
-//           image ? "w-3/5" : "w-fit max-w-80"
-//         } rounded-lg `}
-//       >
-//         <span>{text}</span>
-//         {!!image && (
-//           <div className="relative w-full h-52 mt-2">
-//             <Image
-//               src="/banner_img_1.png"
-//               alt=""
-//               fill
-//               className=" object-cover shadow-xl"
-//             />
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 
 export default ChatMessage;

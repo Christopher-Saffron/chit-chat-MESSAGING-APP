@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import MainText from "../MainText";
 import Image from "next/image";
@@ -9,6 +11,7 @@ import {
 } from "firebase/auth";
 import { toast } from "react-toastify";
 import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 interface BannerLeftProps {
   onClick: (newStatus: STATUSES) => void;
@@ -16,6 +19,7 @@ interface BannerLeftProps {
 
 function Banner_form_login({ onClick }: BannerLeftProps) {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
@@ -28,6 +32,7 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
         password as string
       ).then(() => {
         console.log("LOGGED IN");
+        router.push("/online");
       });
     } catch (err: any) {
       console.log(err);
