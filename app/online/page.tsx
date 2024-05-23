@@ -8,8 +8,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
+import withAuth from "./withAuth";
+import Navbar from "../components/Navbar";
 
-export default function Home() {
+function Online() {
   const { currentUser, isLoading, fetchUserInfo }: any = useUserStore();
   const { chatId }: any = useChatStore();
 
@@ -26,7 +28,8 @@ export default function Home() {
   if (isLoading) return <div>LOADINGGGG</div>;
   return (
     <>
-      <main className="  max-w-screen-lg m-auto  h-[800px] w-[1100px] flex bg-white rounded-xl shadow-xl ">
+      <Navbar isLoggedIn={true} />
+      <main className="  max-w-screen-lg m-auto  h-[800px] w-[1100px] flex bg-white rounded-2xl shadow-xl ">
         {currentUser && (
           <>
             <Menu />
@@ -35,6 +38,11 @@ export default function Home() {
           </>
         )}
       </main>
+
+      {/* //// TEMPORARY FIX FOR A VISUAL BUG - GRID //// */}
+      <div></div>
     </>
   );
 }
+
+export default withAuth(Online);

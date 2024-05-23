@@ -12,6 +12,8 @@ import {
 import { toast } from "react-toastify";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
+import Github_button from "./Github_button";
+import Google_button from "./Google_button";
 
 interface BannerLeftProps {
   onClick: (newStatus: STATUSES) => void;
@@ -76,18 +78,8 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
             <div className="w-full h-0 border-mainText border-b" />
           </div>
           <div className="flex justify-between items-center gap-6">
-            <button className="auth-button">
-              <div className="relative w-6 h-6">
-                <Image src="/Icon_github.svg" alt="" fill />
-              </div>
-              <span>SIGN IN WITH GITHUB</span>
-            </button>
-            <button className="auth-button">
-              <div className="relative w-6 h-6">
-                <Image src="/Icon_gmail.svg" alt="" fill />
-              </div>
-              <span>SIGN IN WITH GOOGLE</span>
-            </button>
+            <Github_button />
+            <Google_button />
           </div>
         </div>
         <div

@@ -17,7 +17,7 @@ function Menu() {
             </button> */}
           </div>
           <AddUser />
-          <div className="flex flex-row justify-between items-center mt-2 pb-4 border-b ">
+          {/* <div className="flex flex-row justify-between items-center mt-2 pb-4 border-b ">
             <button className="relative h-8 w-8">
               <Image src="Icon_Recent.svg" alt="" fill />
             </button>
@@ -27,10 +27,10 @@ function Menu() {
             <button className="relative h-8 w-8">
               <Image src="Icon_Group.svg" alt="" fill />
             </button>
-            {/* <button className="relative h-8 w-8">
+            <button className="relative h-8 w-8">
               <Image src="Icon_Add.svg" alt="" fill />
-            </button> */}
-          </div>
+            </button>
+          </div> */}
         </div>
         <MenuChatList />
       </div>

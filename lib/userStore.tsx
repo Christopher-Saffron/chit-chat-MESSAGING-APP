@@ -5,7 +5,7 @@ import { db } from "./firebase";
 export const useUserStore = create((set) => ({
   currentUser: null,
   isLoading: true,
-  fetchUserInfo: async (uid) => {
+  fetchUserInfo: async (uid: any) => {
     if (!uid) return set({ currentUser: null, isLoading: false });
 
     try {

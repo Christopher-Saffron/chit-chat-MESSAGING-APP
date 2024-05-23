@@ -19,13 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <Notification />
       <body className="min-h-screen grid grid-flow-row grid-cols place-content-between justify-normal bg-blobs blobs-background overflow-y-hidden">
-        {/* <AuthContext> */}
-        <Navbar />
-        <Notification />
         {children}
-        <Footer />
-        {/* </AuthContext> */}
       </body>
     </html>
   );

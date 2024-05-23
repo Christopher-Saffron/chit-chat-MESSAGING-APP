@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { useUserStore } from "./userStore";
 
-console.log(useUserStore);
-
 export const useChatStore = create((set) => ({
   chatId: null,
   user: null,
