@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import React, { useMemo } from "react";
+import React from "react";
 import NavbarButton from "./NavbarButton";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
 
 function Navbar() {
   // const { data: session } = useSession();
@@ -15,7 +14,7 @@ function Navbar() {
   return (
     <nav className="  py-2 w-screen px-24  flex justify-between items-center ">
       <div className="relative w-full max-w-[178px] h-10 cursor-pointer">
-        <Link href="/">
+        <Link href="/" className="relative">
           <Image src="/Chit_chat_logo.svg" fill alt="" />
         </Link>
       </div>

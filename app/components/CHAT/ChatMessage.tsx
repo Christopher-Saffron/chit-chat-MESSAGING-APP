@@ -1,13 +1,15 @@
 import { format, formatDistance, formatDistanceToNow } from "date-fns";
+import { Timestamp } from "firebase/firestore";
 import Image from "next/image";
 import React from "react";
 
 interface MessageProps {
   text: string;
   senderId: string;
-  createdAt: Date;
+  createdAt: Timestamp;
   img?: string;
-  id?: string;
+  avatarImg: string;
+  fromCurrentUser: boolean;
 }
 
 function ChatMessage({
@@ -16,9 +18,7 @@ function ChatMessage({
   avatarImg,
   img,
   fromCurrentUser,
-}: {
-  [key: string]: any;
-}) {
+}: MessageProps) {
   console.log(new Date(createdAt.seconds).toString());
   return (
     <div
@@ -39,22 +39,13 @@ function ChatMessage({
           {format(new Date(createdAt.seconds * 1000), "HH:mm")}
         </span>
       </div>
-      {/* <div
-        className={`${messageSide} font-medium p-3 ${
-          messageSide === "message-right" ? " text-alternativeText" : ""
-        } mb-12  max-w-80 relative w-fit rounded-lg`}
-      >aa</div> */}
-      {/* <div
-        className={`font-medium p-3 mb-12   relative rounded-lg message-right `}
-      >
-        <span>{text}</span>
-      </div> */}
+
       <div
-        className={`${
+        className={`break-all ${
           fromCurrentUser ? "message-right" : "message-left"
         } font-medium p-3 mb-12   relative rounded-lg ${img ? "w-full" : ""} `}
       >
-        <span>{text}</span>
+        <span className=" break-all">{text}</span>
         {img && (
           <div className="relative w-full h-52 mt-2">
             <Image src={img} alt="" fill className=" object-cover shadow-xl" />

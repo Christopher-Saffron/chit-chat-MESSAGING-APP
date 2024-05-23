@@ -38,7 +38,7 @@ function Info() {
           <Avatar img={user.image} />
         </div>
         <span className=" font-bold text-xl mt-2">{user.name}</span>
-        <div className="flex flex-col gap-3  mt-6 p-2 items-start font-bold text-sm text-secondaryText">
+        <div className="flex flex-col gap-3  p-2 items-start font-bold text-sm text-secondaryText">
           <div className="flex items-center gap-4">
             <Image src="/Icon_email.svg" alt="" height={28} width={28} />
             <span className="">{user.email}</span>
@@ -48,14 +48,14 @@ function Info() {
             <span className="">joined 14.04.2024</span>
           </div> */}
         </div>
-        <button className="flex justify-between items-center w-full font-bold  px-3 my-2 py-1 gap-4 border-b border-secondaryText">
+        {/* <button className="flex justify-between items-center w-full font-bold  px-3 my-2 py-1 gap-4 border-b border-secondaryText">
           <span>Chat settings</span>
           <Image src="/Icon_chevron.svg" alt="" height={16} width={16} />
         </button>
         <button className="flex justify-between items-center w-full font-bold px-3 my-2 py-1 gap-4 border-b border-secondaryText">
           <span>Privacy settings</span>
           <Image src="/Icon_chevron.svg" alt="" height={16} width={16} />
-        </button>
+        </button> */}
 
         <div className=" w-full my-12 text-center">
           <button

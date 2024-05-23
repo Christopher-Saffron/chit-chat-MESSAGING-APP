@@ -8,7 +8,7 @@ function ChatOption({ chat }: any) {
   }
 
   const lastMessage = useMemo(() => {
-    return chat.lastMessage.slice(0, 20);
+    return chat.lastMessage.slice(0, 20) + "...";
   }, [chat]);
   return (
     <>

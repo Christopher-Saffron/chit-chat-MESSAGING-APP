@@ -21,7 +21,7 @@ function ChatInput() {
     useChatStore();
   const { currentUser }: any = useUserStore();
 
-  const handleImg = (e) => {
+  const handleImg = (e: any) => {
     if (e.target.files[0]) {
       setImg({
         file: e.target.files[0],
@@ -88,6 +88,14 @@ function ChatInput() {
     }
   }
 
+  function onKeyDown(e: any) {
+    console.log(e.code);
+    if (e.code === "Enter") {
+      console.log("YOU CLICKED ENTER");
+      handleSend();
+    }
+  }
+
   return (
     <div className="w-full h-16 px-3  flex justify-center items-center  bg-[#EBEBEB]">
       <input
@@ -97,6 +105,7 @@ function ChatInput() {
             ? "Blocked from typing"
             : "Type here..."
         }
+        onKeyDown={(e) => onKeyDown(e)}
         disabled={isCurrentUserBlocked || isReceiverBlocked}
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -148,9 +157,9 @@ function ChatInput() {
         </button>
         {EmojiPickerOpen && (
           <motion.div
-            // initial={{ opacity: 0, x: 100, y: '150%',  }}
+            // initial={{ opacity: 0, x: 100, y: "150%" }}
             // animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
+            // transition={{ duration: 0.3 }}
             className="absolute bottom-[150%] right-0"
           >
             <EmojiPicker onEmojiClick={handleEmoji} />
