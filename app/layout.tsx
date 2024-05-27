@@ -8,8 +8,7 @@ import Notification from "./components/NOTIFICATION/Notification";
 
 export const metadata: Metadata = {
   title: "Chit Chat - Christopher Saffron",
-  description:
-    "Messaging app by Christopher Saffron. React, Nextjs, Prisma, Mongodb, Tailwind and Zustand.",
+  description: "Real-time messaging app",
 };
 
 export default function RootLayout({
@@ -19,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Notification />
+      {/* <Notification /> */}
       <body className="min-h-screen grid grid-flow-row grid-cols place-content-between justify-normal bg-blobs blobs-background overflow-y-hidden">
         {children}
       </body>

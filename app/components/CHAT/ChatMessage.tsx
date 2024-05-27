@@ -19,7 +19,6 @@ function ChatMessage({
   img,
   fromCurrentUser,
 }: MessageProps) {
-  console.log(new Date(createdAt.seconds).toString());
   return (
     <div
       className={`message ${

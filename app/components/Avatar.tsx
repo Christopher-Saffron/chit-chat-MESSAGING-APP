@@ -10,7 +10,7 @@ function Avatar({ img }: { img?: string }) {
         fill
         className="rounded-full object-cover"
       />
-      <div className="h-1/4 w-1/4 rounded-full bg-[#9FF577] absolute bottom-0.5 right-0.5" />
+      {/* <div className="h-1/4 w-1/4 rounded-full bg-[#9FF577] absolute bottom-0.5 right-0.5" /> */}
     </>
   );
 }

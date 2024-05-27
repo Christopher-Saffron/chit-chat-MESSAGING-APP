@@ -10,6 +10,7 @@ import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
 import withAuth from "./withAuth";
 import Navbar from "../components/Navbar";
+import Spinner from "../components/Spinner";
 
 function Online() {
   const { currentUser, isLoading, fetchUserInfo }: any = useUserStore();
@@ -25,7 +26,7 @@ function Online() {
     };
   }, [fetchUserInfo]);
 
-  if (isLoading) return <div>LOADINGGGG</div>;
+  if (isLoading) return <Spinner />;
   return (
     <>
       <Navbar isLoggedIn={true} />
@@ -33,8 +34,14 @@ function Online() {
         {currentUser && (
           <>
             <Menu />
-            {chatId && <Chat />}
-            {chatId && <Info />}
+            {chatId && (
+              <>
+                <Chat />
+                <Info />
+              </>
+            )}
+            {/* {chatId && <Chat />}
+            {chatId && <Info />} */}
           </>
         )}
       </main>

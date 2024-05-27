@@ -17,16 +17,20 @@ function Navbar({ isLoggedIn }: { isLoggedIn?: boolean }) {
   }
 
   function handleHome() {
-    router.refresh();
+    router.push("/");
   }
 
   return (
     <nav className="  py-2 w-screen px-24  flex justify-between items-center ">
-      <div className="relative w-full max-w-[178px] h-10 cursor-pointer">
-        <Link href="/">
-          <Image src="/Chit_chat_logo.svg" fill alt="" />
-        </Link>
-      </div>
+      {!isLoggedIn ? (
+        <div className="relative w-full max-w-[178px] h-10 cursor-pointer">
+          <Link href="/">
+            <Image src="/Chit_chat_logo.svg" fill alt="" />
+          </Link>
+        </div>
+      ) : (
+        <div></div>
+      )}
 
       <ul className="flex gap-4 main">
         {isLoggedIn ? (

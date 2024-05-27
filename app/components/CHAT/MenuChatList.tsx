@@ -64,7 +64,26 @@ function MenuChatList() {
 
   return (
     <div className="flex flex-col max-h-[550px] scrollbar-thin scrollbar-track-transparent scrollbar-corner-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-[#89B747] overflow-y-scroll">
-      {chats.map((chat: any) => (
+      {chats.length > 0 ? (
+        chats.map((chat: any) => (
+          <div
+            onClick={() => {
+              handleSelect(chat);
+            }}
+            className={`flex justify-between items-center  py-2 px-6 gap-4 cursor-pointer ${
+              chat.isSeen ? "" : "bg-[#90c26a]"
+            } hover:bg-[#75B444]`}
+            key={chat.chatId}
+          >
+            <ChatOption chat={chat} />
+          </div>
+        ))
+      ) : (
+        <span className=" text-alternativeText text-xs w-2/3 text-center mx-auto italic">
+          Feel free to add test accounts such as "John Doe" or "Foo Bar"
+        </span>
+      )}
+      {/* {chats.map((chat: any) => (
         <div
           onClick={() => {
             handleSelect(chat);
@@ -76,7 +95,7 @@ function MenuChatList() {
         >
           <ChatOption chat={chat} />
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

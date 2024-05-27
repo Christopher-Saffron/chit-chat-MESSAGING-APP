@@ -16,7 +16,7 @@ export default function Home() {
       <main className="  max-w-screen-lg m-auto grow -mt-12 border-sky-500 border- ">
         <Main_Screen />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

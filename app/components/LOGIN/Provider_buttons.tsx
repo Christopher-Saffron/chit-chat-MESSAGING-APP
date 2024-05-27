@@ -6,30 +6,81 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithPopup,
+  getAdditionalUserInfo,
 } from "firebase/auth";
-import { auth } from "@/lib/firebase";
+import { auth, db } from "@/lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function Provider_buttons() {
-  function handleGithub(e: any) {
-    e.preventDefault();
-    const githubProvider = new GithubAuthProvider();
-    signInWithPopup(auth, githubProvider).then((res: any) => {
-      console.log(res.user);
-      /////////////////////// ADD NEW DOCUMENT TO FIREBASE
+  const router = useRouter();
 
-      /////////////////////// REDIRECT
-    });
+  async function handleGithub(e: any) {
+    e.preventDefault();
+
+    try {
+      const githubProvider = new GithubAuthProvider();
+      signInWithPopup(auth, githubProvider).then(async (res: any) => {
+        const additionalUserInfo = getAdditionalUserInfo(res);
+        const isNewUser = additionalUserInfo?.isNewUser;
+
+        if (isNewUser) {
+          /////////////////////// ADD NEW DOCUMENT TO FIREBASE
+          await setDoc(doc(db, "users", res.user.uid), {
+            name: res.user.displayName,
+            email: res.user.email,
+            image: res.user.photoURL,
+            id: res.user.uid,
+            blocked: [],
+          });
+
+          await setDoc(doc(db, "userchats", res.user.uid), {
+            chats: [],
+          });
+
+          toast.success("Account created!");
+        }
+
+        /////////////////////// REDIRECT
+        router.push("/online");
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
-  function handleGoogle(e: any) {
+  async function handleGoogle(e: any) {
     e.preventDefault();
-    const googleProvider = new GoogleAuthProvider();
-    signInWithPopup(auth, googleProvider).then((res: any) => {
-      console.log(res.user);
-      /////////////////////// ADD NEW DOCUMENT TO FIREBASE
 
-      /////////////////////// REDIRECT
-    });
+    try {
+      const googleProvider = new GoogleAuthProvider();
+      signInWithPopup(auth, googleProvider).then(async (res: any) => {
+        const additionalUserInfo = getAdditionalUserInfo(res);
+        const isNewUser = additionalUserInfo?.isNewUser;
+        if (isNewUser) {
+          ////// is new user, create new document
+          await setDoc(doc(db, "users", res.user.uid), {
+            name: res.user.displayName,
+            email: res.user.email,
+            image: res.user.photoURL,
+            id: res.user.uid,
+            blocked: [],
+          });
+
+          await setDoc(doc(db, "userchats", res.user.uid), {
+            chats: [],
+          });
+
+          toast.success("Account created!");
+        }
+        // /////////////////////// REDIRECT
+
+        router.push("/online");
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

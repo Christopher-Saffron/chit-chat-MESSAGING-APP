@@ -75,7 +75,7 @@ function Chat() {
           <div className="h-3 w-3 rounded-full bg-[#9FF577] absolute top-1/2 -left-5 -translate-y-1/2" />
           <h2>{user.name}</h2>
         </div>
-        <p className="italic text-sm text-secondaryText">Typing...</p>
+        <p className="italic text-sm text-secondaryText">Say something nice!</p>
       </div>
 
       <div className="p-4 flex-col mx-1 flex-grow flex justify-end  gap-4 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-corner-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-secondaryText">

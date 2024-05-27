@@ -14,7 +14,7 @@ const withAuth = (WrappedComponent) => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
         console.log(user);
         if (!user) {
-          router.replace("/");
+          router.push("/");
         } else {
           setLoading(false);
         }

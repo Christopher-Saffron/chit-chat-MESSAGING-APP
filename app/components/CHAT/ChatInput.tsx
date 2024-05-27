@@ -65,8 +65,6 @@ function ChatInput() {
             (c: any) => c.chatId === chatId
           );
 
-          console.log(userChatsData, "and now index", chatIndex);
-
           userChatsData.chats[chatIndex].lastMessage = text;
           userChatsData.chats[chatIndex].isSeen =
             id === currentUser.id ? true : false;
@@ -89,7 +87,6 @@ function ChatInput() {
   }
 
   function onKeyDown(e: any) {
-    console.log(e.code);
     if (e.code === "Enter") {
       console.log("YOU CLICKED ENTER");
       handleSend();

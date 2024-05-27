@@ -5,15 +5,13 @@ import MainText from "../MainText";
 import Image from "next/image";
 import GoBackArrow from "../GoBackArrow";
 import { STATUSES } from "./Main_Screen";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import Github_button from "./Github_button";
 import Google_button from "./Google_button";
+import Provider_buttons from "./Provider_buttons";
 
 interface BannerLeftProps {
   onClick: (newStatus: STATUSES) => void;
@@ -77,10 +75,7 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
             <div className="font-bold">OR</div>
             <div className="w-full h-0 border-mainText border-b" />
           </div>
-          <div className="flex justify-between items-center gap-6">
-            <Github_button />
-            <Google_button />
-          </div>
+          <Provider_buttons />
         </div>
         <div
           onClick={() => {
