@@ -32,7 +32,7 @@ function Info() {
     }
   };
   return (
-    <div className="w-[250px] h-full flex-shrink-0 rounded-r-xl border-l border-gray-200 overflow-x-hidden">
+    <div className="hidden lg:block w-[250px] h-full flex-shrink-0 rounded-r-xl border-l border-gray-200 overflow-x-hidden">
       <div className="flex justify-center  flex-col items-center mt-24">
         <div className="h-32 w-32 relative">
           <Avatar img={user.image} />

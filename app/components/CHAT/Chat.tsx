@@ -6,6 +6,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
+import Image from "next/image";
 
 // const FAKE_MESSAGES = [
 //   {
@@ -70,12 +71,25 @@ function Chat() {
 
   return (
     <div className="h-full  w-full flex flex-col   justify-normal ">
-      <div className=" h-20 flex flex-col px-9 py-3  justify-center shadow-xl ">
-        <div className="relative   font-bold text-xl">
-          <div className="h-3 w-3 rounded-full bg-[#9FF577] absolute top-1/2 -left-5 -translate-y-1/2" />
-          <h2>{user.name}</h2>
+      <div className=" h-20 flex justify-between px-9 py-3  items-center shadow-xl  ">
+        <div>
+          <div className="relative   font-bold text-xl">
+            <div className="h-3 w-3 rounded-full bg-[#9FF577] absolute top-1/2 -left-5 -translate-y-1/2" />
+            <h2>{user.name}</h2>
+          </div>
+          <p className="italic text-sm text-secondaryText">
+            Say something nice!
+          </p>
         </div>
-        <p className="italic text-sm text-secondaryText">Say something nice!</p>
+        <div>
+          <Image
+            className="cursor-pointer hover:scale-110 transition"
+            src="/Icon_more.svg"
+            width={10}
+            height={16}
+            alt="Show more"
+          />
+        </div>
       </div>
 
       <div className="p-4 flex-col mx-1 flex-grow flex justify-end  gap-4 overflow-y-scroll scrollbar-thin scrollbar-track-transparent scrollbar-corner-transparent scrollbar-thumb-rounded-lg scrollbar-track-rounded-lg scrollbar-thumb-secondaryText">

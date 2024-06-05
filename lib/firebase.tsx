@@ -7,9 +7,9 @@ const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "chitchat-2dac0.firebaseapp.com",
   projectId: "chitchat-2dac0",
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_storageBucket,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_messagingSenderIdd,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_appId,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGINGSENDERID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APPID,
 };
 
 const app = initializeApp(firebaseConfig);

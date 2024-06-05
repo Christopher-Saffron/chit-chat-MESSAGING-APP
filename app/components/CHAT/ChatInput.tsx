@@ -88,13 +88,12 @@ function ChatInput() {
 
   function onKeyDown(e: any) {
     if (e.code === "Enter") {
-      console.log("YOU CLICKED ENTER");
       handleSend();
     }
   }
 
   return (
-    <div className="w-full h-16 px-3  flex justify-center items-center  bg-[#EBEBEB]">
+    <div className="w-full h-16 px-3 py-2  flex justify-center items-center  bg-[#EBEBEB]">
       <input
         className="w-full bg-inherit text-xl placeholder:color-secondaryText h-10 py-4 rounded-lg  placeholder:font-bold  relative focus:outline-none"
         placeholder={

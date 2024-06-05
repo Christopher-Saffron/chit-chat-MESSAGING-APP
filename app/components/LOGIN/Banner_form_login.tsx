@@ -51,14 +51,12 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
         <h2 className="main-text">LOGIN</h2>
         <div className="flex flex-col my-8 gap-6">
           <div className="flex flex-col gap-2">
-            <label className="label-text">
-              E-MAIL / PHONE NUMBER / NICKNAME
-            </label>
+            <label className="label-text">E-MAIL</label>
             <input
               className=" p-3 border border-mainText rounded-sm  focus:outline-main"
               type="text"
               name="email"
-              placeholder="For a fast check You can use “user”"
+              placeholder="For a fast check You can use “user@user.com”"
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -82,9 +80,9 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
             onClick("register");
           }}
         >
-          <MainText style={"font-bold tracking-wide cursor-pointer"}>
+          {/* <MainText style={"font-bold tracking-wide cursor-pointer"}>
             New user? <span className=" underline">Create an account.</span>
-          </MainText>
+          </MainText> */}
         </div>
         <div className="flex gap-10 my-4 font-bold text-alternativeText">
           <button

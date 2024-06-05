@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <Notification /> */}
-      <body className="min-h-screen grid grid-flow-row grid-cols place-content-between justify-normal bg-blobs blobs-background overflow-y-hidden">
+      <body className="min-h-screen border-4 lg:border-red-500 grid grid-flow-row grid-cols place-content-between justify-normal bg-blobs blobs-background overflow-y-hidden">
         {children}
       </body>
     </html>
