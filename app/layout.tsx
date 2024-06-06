@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Blobs from "./components/Blobs";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 import Notification from "./components/NOTIFICATION/Notification";
 // import AuthContext from "@/context/AuthContext";
 
@@ -19,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <Notification /> */}
-      <body className="min-h-screen border-4 lg:border-red-500 grid grid-flow-row grid-cols place-content-between justify-normal bg-blobs blobs-background overflow-y-hidden">
+      <body className="min-h-screen grid  grid-flow-row grid-cols justify-center place-content-center md:place-content-center lg:place-content-between lg:justify-normal    bg-blobs blobs-background overflow-x-hidden lg:overflow-hidden">
         {children}
       </body>
     </html>

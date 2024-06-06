@@ -9,7 +9,7 @@ import { doc, setDoc } from "firebase/firestore";
 import upload from "@/lib/upload";
 import { useRouter } from "next/navigation";
 
-interface BannerLeftProps {
+export interface BannerLeftProps {
   onClick: (newStatus: STATUSES) => void;
 }
 
@@ -70,7 +70,7 @@ function Banner_form_register({ onClick }: BannerLeftProps) {
   };
 
   return (
-    <div className="grow w-[700px] h-[700px] max-h-[700px] max-w-[700px]  relative px-4 py-1 ">
+    <div className="hidden md:block grow w-[700px] h-[700px] max-h-[700px] max-w-[700px]  relative px-4 py-1 ">
       <GoBackArrow
         style="-left-6"
         handleClick={() => {

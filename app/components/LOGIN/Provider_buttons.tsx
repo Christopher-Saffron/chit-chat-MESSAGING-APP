@@ -84,15 +84,15 @@ function Provider_buttons() {
   }
 
   return (
-    <div className="flex justify-between items-center gap-6">
+    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
       <button onClick={handleGithub} className="auth-button">
-        <div className="relative w-6 h-6">
+        <div className="hidden md:block relative w-6 h-6">
           <Image src="/Icon_github.svg" alt="" fill />
         </div>
         <span>LOGIN WITH GITHUB</span>
       </button>
       <button onClick={handleGoogle} className="auth-button">
-        <div className="relative w-6 h-6">
+        <div className="hidden md:block relative w-6 h-6">
           <Image src="/Icon_gmail.svg" alt="" fill />
         </div>
         <span>LOGIN WITH GOOGLE</span>

@@ -30,18 +30,11 @@ function Online() {
   return (
     <>
       <Navbar isLoggedIn={true} />
-      <main className="  max-w-screen-lg m-auto  h-[800px] w-[1100px] flex bg-white rounded-2xl shadow-xl ">
+      <main className=" relative max-w-screen-lg m-auto h-screen md:h-[800px] w-screen md:w-max lg:w-[1100px] flex flex-col md:flex-row bg-white rounded-2xl shadow-xl ">
         {currentUser && (
           <>
             <Menu />
-            {chatId && (
-              <>
-                <Chat />
-                <Info />
-              </>
-            )}
-            {/* {chatId && <Chat />}
-            {chatId && <Info />} */}
+            {chatId && <Chat />}
           </>
         )}
       </main>

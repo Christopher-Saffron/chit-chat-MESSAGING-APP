@@ -1,16 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import MainText from "../MainText";
-import Image from "next/image";
 import GoBackArrow from "../GoBackArrow";
 import { STATUSES } from "./Main_Screen";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
-import Github_button from "./Github_button";
-import Google_button from "./Google_button";
 import Provider_buttons from "./Provider_buttons";
 
 interface BannerLeftProps {
@@ -40,7 +36,7 @@ function Banner_form_login({ onClick }: BannerLeftProps) {
     }
   };
   return (
-    <div className="grow w-[700px] h-[700px] max-h-[700px] max-w-[700px]  relative px-4 py-1 ">
+    <div className="hidden md:block grow w-[700px] h-[700px] max-h-[700px] max-w-[700px]  relative px-4 py-1 ">
       <GoBackArrow
         style="-left-6"
         handleClick={() => {

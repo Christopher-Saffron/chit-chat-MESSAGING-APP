@@ -5,10 +5,10 @@ import AddUser from "./AddUser";
 
 function Menu() {
   return (
-    <div className="w-[350px] h-full bg-chatGradient rounded-l-2xl flex-shrink-0 py-8">
+    <div className=" md:w-[250px] lg:w-[350px] max-h-[300px] md:max-h-none overflow-hidden md:h-full bg-chatGradient md:rounded-l-2xl flex-shrink-0 py-8">
       <div className="w-full h-full">
         <div className="px-8">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-center items-center">
             <div className="relative w-[180px] h-11">
               <Image src="Chit_chat_logo_white.svg" alt="" fill />
             </div>

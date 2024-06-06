@@ -11,7 +11,7 @@ interface BannerLeftProps {
 
 function Banner_left({ onClick }: BannerLeftProps) {
   return (
-    <div className=" w-[700px] h-[700px] max-h-[700px] max-w-[700px]">
+    <div className=" hidden md:block w-[700px] h-[700px] max-h-[700px] max-w-[700px]">
       <p className=" font-extrabold ml-6 mb-6">
         CHIT<MainText>CHAT</MainText>
       </p>

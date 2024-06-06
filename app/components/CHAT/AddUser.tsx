@@ -74,6 +74,8 @@ function AddUser() {
       });
     } catch (err) {
       console.log(err);
+    } finally {
+      setUser(null);
     }
   };
 

@@ -21,9 +21,9 @@ function Navbar({ isLoggedIn }: { isLoggedIn?: boolean }) {
   }
 
   return (
-    <nav className="  py-2 w-screen px-6 lg:px-24  flex justify-end lg:justify-between items-center ">
+    <nav className=" hidden md:flex py-2 max-w-screen-md lg:max-w-full mx-auto w-full lg:w-full px-6 lg:px-24 justify-center   md:justify-between items-center ">
       {!isLoggedIn ? (
-        <div className="relative w-full max-w-[178px] h-10 cursor-pointer">
+        <div className="relative w-full max-w-[178px]  md:h-10 cursor-pointer">
           <Link href="/">
             <Image src="/Chit_chat_logo.svg" fill alt="" />
           </Link>
@@ -32,7 +32,7 @@ function Navbar({ isLoggedIn }: { isLoggedIn?: boolean }) {
         <div></div>
       )}
 
-      <ul className="flex gap-4 main">
+      <ul className=" flex gap-4 main">
         {isLoggedIn ? (
           <NavbarButton
             onClick={handleLogOut}

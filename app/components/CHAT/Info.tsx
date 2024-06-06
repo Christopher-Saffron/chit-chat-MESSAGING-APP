@@ -6,7 +6,13 @@ import { useUserStore } from "@/lib/userStore";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
-function Info() {
+function Info({
+  isShown,
+  toggleIsShown,
+}: {
+  isShown: boolean;
+  toggleIsShown: Function;
+}) {
   const {
     chatId,
     user,
@@ -32,7 +38,13 @@ function Info() {
     }
   };
   return (
-    <div className="hidden lg:block w-[250px] h-full flex-shrink-0 rounded-r-xl border-l border-gray-200 overflow-x-hidden">
+    <div
+      className={` w-[250px] h-full flex-shrink-0 rounded-r-xl border-l border-gray-200 overflow-x-hidden ${
+        isShown
+          ? "block absolute top-0 right-0  bg-white shadow-xl h-[90%]"
+          : "hidden"
+      } info-stays-visible-in-large`}
+    >
       <div className="flex justify-center  flex-col items-center mt-24">
         <div className="h-32 w-32 relative">
           <Avatar img={user.image} />
@@ -43,20 +55,7 @@ function Info() {
             <Image src="/Icon_email.svg" alt="" height={28} width={28} />
             <span className="">{user.email}</span>
           </div>
-          {/* <div className="flex items-center gap-4">
-            <Image src="/Icon_date.svg" alt="" height={28} width={28} />
-            <span className="">joined 14.04.2024</span>
-          </div> */}
         </div>
-        {/* <button className="flex justify-between items-center w-full font-bold  px-3 my-2 py-1 gap-4 border-b border-secondaryText">
-          <span>Chat settings</span>
-          <Image src="/Icon_chevron.svg" alt="" height={16} width={16} />
-        </button>
-        <button className="flex justify-between items-center w-full font-bold px-3 my-2 py-1 gap-4 border-b border-secondaryText">
-          <span>Privacy settings</span>
-          <Image src="/Icon_chevron.svg" alt="" height={16} width={16} />
-        </button> */}
-
         <div className=" w-full my-12 text-center">
           <button
             onClick={handleBlock}
@@ -70,6 +69,12 @@ function Info() {
           </button>
         </div>
       </div>
+      <button
+        onClick={() => toggleIsShown(false)}
+        className="absolute top-0 right-0 p-5 text-xl cursor-pointer text-secondaryText hover:text-black hover:scale-110 transition"
+      >
+        X
+      </button>
     </div>
   );
 }

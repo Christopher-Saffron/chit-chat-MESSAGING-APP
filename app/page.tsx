@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Navbar isLoggedIn={false} />
-      <main className="  max-w-screen-lg m-auto grow -mt-12 border-sky-500 border- ">
+      <main className="  max-w-screen-lg m-auto grow mt-2 lg:-mt-12  ">
         <Main_Screen />
       </main>
       <Footer />
