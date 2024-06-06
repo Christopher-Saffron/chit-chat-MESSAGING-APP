@@ -2,11 +2,14 @@ import { doc, getDoc } from "firebase/firestore";
 import { create } from "zustand";
 import { db } from "./firebase";
 
-//// TEMPORARY FIX
+type User = {
+  [key: string]: string;
+};
+
 type UserStoreState = {
-  currentUser: any;
-  isLoading: any;
-  fetchUserInfo: any;
+  currentUser: User | null;
+  isLoading: boolean;
+  fetchUserInfo: (uid: string) => Promise<void>;
 };
 
 export const useUserStore = create<UserStoreState>((set) => ({
@@ -21,6 +24,7 @@ export const useUserStore = create<UserStoreState>((set) => ({
 
       if (docSnap.exists()) {
         set({ currentUser: docSnap.data(), isLoading: false });
+        console.log(docSnap.data());
       } else {
         set({ currentUser: null, isLoading: false });
       }

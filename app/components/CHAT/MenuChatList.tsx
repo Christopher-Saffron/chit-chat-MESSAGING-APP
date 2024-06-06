@@ -19,6 +19,7 @@ function MenuChatList() {
       doc(db, "userchats", currentUser.id),
       async (res) => {
         const items = res.data()?.chats ?? [];
+        console.log(items);
 
         const promises = items.map(async (item: any) => {
           const userDocRef = doc(db, "users", item.receiverId);
