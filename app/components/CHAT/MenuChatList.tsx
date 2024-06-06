@@ -18,7 +18,7 @@ function MenuChatList() {
     const unSub = onSnapshot(
       doc(db, "userchats", currentUser.id),
       async (res) => {
-        const items = res.data().chats;
+        const items = res.data()?.chats ?? [];
 
         const promises = items.map(async (item: any) => {
           const userDocRef = doc(db, "users", item.receiverId);
@@ -38,14 +38,14 @@ function MenuChatList() {
     };
   }, [currentUser.id]);
 
-  const handleSelect = async (chat) => {
-    const userChats = chats.map((item) => {
+  const handleSelect = async (chat: any) => {
+    const userChats = chats.map((item: any) => {
       const { user, ...rest } = item;
       return rest;
     });
 
     const chatIndex = userChats.findIndex(
-      (item) => item.chatId === chat.chatId
+      (item: any) => item.chatId === chat.chatId
     );
 
     userChats[chatIndex].isSeen = true;
