@@ -80,7 +80,7 @@ function MenuChatList() {
         ))
       ) : (
         <span className=" text-alternativeText text-xs w-2/3 text-center mx-auto italic">
-          Feel free to add test accounts such as "John Doe" or "Foo Bar"
+          Feel free to add test accounts such as John Doe or Foo Bar
         </span>
       )}
     </div>
