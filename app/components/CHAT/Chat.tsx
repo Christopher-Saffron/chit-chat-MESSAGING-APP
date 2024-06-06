@@ -8,7 +8,6 @@ import { useChatStore } from "@/lib/chatStore";
 import { useUserStore } from "@/lib/userStore";
 import Image from "next/image";
 import Info from "./Info";
-import { AnimatePresence } from "framer-motion";
 
 function Chat() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
