@@ -48,7 +48,7 @@ function ChatInput() {
           senderId: currentUser.id,
           text,
           createdAt: new Date(),
-          ...(imgUrl && { img: imgUrl }),
+          ...(imgUrl ? { img: imgUrl } : {}),
         }),
       });
 
